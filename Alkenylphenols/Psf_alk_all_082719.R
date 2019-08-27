@@ -674,15 +674,20 @@ choice<-choice%>%
 
 #only first season
 choice_dry <-filter(choice, season == "D")
+choice_dry <-filter(choice_dry, concentration == 100)
 choice_dry[is.na(choice_dry)] <- 0
 
+#write.csv(choice_dry, "Maynard_etal_AlkenylphenolAnimalTrials.csv") 
+animal <- read.csv(file="Maynard_etal_AlkenylphenolAnimalTrials.csv",head=TRUE)
+
 #separating bats and birds with only 100% concentration trials
-bat<-slice(choice_dry, 1:58)
-bird<-slice(choice_dry, 59:85)
+bat<-slice(animal, 1:32)
+bird<-slice(animal, 33:58)
 
 
 birdg <- gather(bird, "treatment", "amount_eaten", 17:18)
 birdg$amount_eaten<-as.numeric(birdg$amount_eaten)
+birdg$amount_eaten[birdg$amount_eaten>3] <- 3
 birdg$treatment<-as.character(birdg$treatment)
 bird_ag<-aggregate(amount_eaten~ID+treatment, data=birdg, FUN=mean) 
 bird_1<-spread(data=bird_ag, treatment, amount_eaten)
@@ -699,8 +704,8 @@ bat_1<-spread(data=bat_ag, treatment, amount_eaten)
 shapiro.test(bat_1$c.eaten)#not norm dist?
 shapiro.test(bat_1$t.eaten)#norm dist
 
-t.test(bird_1$c.eaten, bird_1$t.eaten, paired = T)#t=0.26,df=9,p=0.80
-t.test(bat_1$c.eaten, bat_1$t.eaten, paired = T)#t=2.20,df=15,p=0.044
+t.test(bird_1$c.eaten, bird_1$t.eaten, paired = T)#t=0.30,df=9,p=0.775
+t.test(bat_1$c.eaten, bat_1$t.eaten, paired = T)#t=2.73,df=16,p=0.015
 
 #change names for graph
 bat_ag$treatment[bat_ag$treatment=="t.eaten"]="Treatment"
@@ -720,18 +725,9 @@ birdpref<-ggplot(bird_ag,aes(x=treatment,y=amount_eaten))+geom_boxplot()+
 	geom_jitter(position=position_jitter(width = 0.03), alpha=0.5,size=1.7)+
 	theme_classic()+
 	labs(x=" ",y="")+
-	scale_y_continuous(limits =  c(0,3.0))+
+	scale_y_continuous(limits =  c(0,3.00))+
 	theme(text = element_text(size = 18))
 birdpref
-
-birdpref1<-ggplot(bird_ag,aes(x=treatment,y=amount_eaten))+geom_boxplot()+
-	geom_jitter(position=position_jitter(width = 0.03), alpha=0.5,size=1.7)+
-	theme_classic()+
-	labs(x=" ",y="Average amount eaten (g)")+
-	scale_y_continuous(limits =  c(0,3.0))+
-	theme(text = element_text(size = 18))
-birdpref1
-
 
 tiff('animal_pref.tiff', units="in", width=8, height=4, res=500)
 ggarrange(batpref, birdpref, 
