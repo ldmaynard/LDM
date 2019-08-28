@@ -545,7 +545,7 @@ supp.plot.all
 dev.off()
 
 ##Fungal bioassay##
-datf <- read.csv(file="finaldat1.csv",head=TRUE,fill=T)
+datf <- read.csv(file="Maynard_etal_FungalBioassays.csv",head=TRUE,fill=T)
 datf <- datf[1:81,]
 
 datf$Conc<-as.numeric(datf$Conc)
@@ -566,9 +566,6 @@ mod3<-lm(data = R3, abs_corr~Conc)
 summary(mod23)#p<0.0001
 summary(mod26)#p=0.275
 summary(mod3)#p<0.0001
-
-
-#can't get a LMM to fit with any random effect (ID), so switched to regular lm
 
 R23$yhat<-predict(mod23)
 predplot23<-ggplot(R23)+
@@ -638,49 +635,13 @@ dev.off()
 
 
 ##Animal feeding trials##
-birds <- read.csv(file="bird cage exp_master.csv",head=TRUE)
-bats <- read.csv(file="bat cage exp_master.csv",head=TRUE)
-
-
-##DATA CLEANING/WRANGLING
-colnames(bats)[18] <- "c.eaten"
-colnames(bats)[19] <- "t.eaten"
-
-colnames(birds)[1] <- "ID"
-colnames(bats)[1] <- "ID"
-
-bats$animal <- NA
-for(i in 1:length(bats$animal)){
-	if(bats$sex[i]=="M"){bats$animal[i]="Bat"}
-	if(bats$sex[i]=="F"){bats$animal[i]="Bat"}
-}
-
-birds$animal <- NA
-for(i in 1:length(birds$animal)){
-	if(birds$sex[i]=="M"){birds$animal[i]="Bird"}
-	if(birds$sex[i]=="F"){birds$animal[i]="Bird"}
-}
-
-choice <- merge(birds, bats, all.x = T, all.y = T)
-choice <- choice[order(choice$animal),]
-
-choice$t.eaten[choice$t.eaten>3] <- 3
-choice$t.eaten[choice$t.eaten<0] <- 0
-choice$c.eaten[choice$c.eaten<0] <- 0
-
-#only animals that participated
-choice<-choice%>%
-	filter(participate==1)
-
-#only first season
-choice_dry <-filter(choice, season == "D")
-choice_dry <-filter(choice_dry, concentration == 100)
-choice_dry[is.na(choice_dry)] <- 0
-
-#write.csv(choice_dry, "Maynard_etal_AlkenylphenolAnimalTrials.csv") 
 animal <- read.csv(file="Maynard_etal_AlkenylphenolAnimalTrials.csv",head=TRUE)
 
-#separating bats and birds with only 100% concentration trials
+#only animals that participated
+animal<-animal%>%
+	filter(participate==1)
+
+#separating bats and birds 
 bat<-slice(animal, 1:32)
 bird<-slice(animal, 33:58)
 
