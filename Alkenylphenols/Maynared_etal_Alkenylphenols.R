@@ -668,22 +668,17 @@ choice$t.eaten[choice$t.eaten>3] <- 3
 choice$t.eaten[choice$t.eaten<0] <- 0
 choice$c.eaten[choice$c.eaten<0] <- 0
 
+#only animals that participated
+choice<-choice%>%
+	filter(participate==1)
+
 #only first season
 choice_dry <-filter(choice, season == "D")
 choice_dry <-filter(choice_dry, concentration == 100)
 choice_dry[is.na(choice_dry)] <- 0
 
-choice_dry$forearm.wing<-choice_dry$forearm + choice_dry$wing
-
-#removing columns: notes, dish.no, separate wing and forearm cols
-choice_dry <- subset(choice_dry, select = -c(23,25:27))
-
 #write.csv(choice_dry, "Maynard_etal_AlkenylphenolAnimalTrials.csv") 
 animal <- read.csv(file="Maynard_etal_AlkenylphenolAnimalTrials.csv",head=TRUE)
-
-#only animals that participated
-animal<-animal%>%
-	filter(participate==1)
 
 #separating bats and birds with only 100% concentration trials
 bat<-slice(animal, 1:32)
