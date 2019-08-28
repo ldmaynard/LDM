@@ -1,5 +1,6 @@
 rm(list=ls())
-setwd("~/Desktop/DATA/Alkenylphenols all")
+
+####Load libraries####
 library(dplyr)
 library(tidyr)
 library(Rmisc)
@@ -21,7 +22,7 @@ library(tinytex)
 library(ggpubr)
 library(pals)
 
-##Quantitative chemistry 
+####Quantitative chemistry####
 df_all <- read.csv(file="df_all.csv",head=TRUE)
 #removing unnec. cols
 df_all <- subset(df_all, select = -c(1, 6:32,43:52))
@@ -544,7 +545,7 @@ tiff('supp.plot.all.tiff', units="in", width=10, height=4, res=500)
 supp.plot.all
 dev.off()
 
-##Fungal bioassay##
+####Fungal bioassays####
 datf <- read.csv(file="Maynard_etal_FungalBioassays.csv",head=TRUE,fill=T)
 datf <- datf[1:81,]
 
@@ -609,10 +610,6 @@ tiff('fungiplot.tiff', units="in", width=8, height=5, res=500)
 plota
 dev.off()
 
-summary(lm(R23$abs_corr~R23$Conc))##R^2=0.84
-summary(lm(R26$abs_corr~R26$Conc))##R^2=0.04
-summary(lm(R3$abs_corr~R3$Conc))##R^2=0.77
-
 ##bw plot
 plot.bw<-ggplot(datf, aes(x=Conc, y=abs_corr, group=nfungi))+
 	geom_smooth(aes(linetype=nfungi),color="black", method = "lm", se=T)+
@@ -634,7 +631,7 @@ plot.bw
 dev.off()
 
 
-##Animal feeding trials##
+####Animal feeding trials####
 animal <- read.csv(file="Maynard_etal_AlkenylphenolAnimalTrials.csv",head=TRUE)
 
 #only animals that participated
@@ -703,7 +700,7 @@ ggarrange(batpref, birdpref1,
 dev.off()
 
 ####Removal study####
-remo <- read.csv(file="Psf_removal.csv",head=TRUE,fill=T)
+remo <- read.csv(file="Maynard_etal_PiperRemovalStudy.csv",head=TRUE,fill=T)
 
 remo<-remo[-c(71),]
 
