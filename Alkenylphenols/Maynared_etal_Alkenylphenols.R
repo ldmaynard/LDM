@@ -731,10 +731,10 @@ tbl3<-as.data.frame(tbl)
 tbl3
 
 bp <- ggplot(tbl3, aes(x=Var2, y=Freq, fill=Var1))+
-	geom_bar(aes(fill=Var1),stat = "identity", position = "dodge")+
+	geom_bar(aes(fill=Var1),stat = "identity", position = "stack")+
 	theme_classic()+
-	scale_fill_viridis(discrete = T, option = "D")+
 	labs(x="", y="No. of fruits removed",fill="")+
-	theme(text = element_text(size = 18))
+	theme(text = element_text(size = 18))+
+	scale_fill_manual(values=c('#006837','#addd8e'))
 bp
 
