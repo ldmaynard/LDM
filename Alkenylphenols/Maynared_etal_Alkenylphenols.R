@@ -1,6 +1,8 @@
 rm(list=ls())
 
-####Load libraries####
+
+# Load Libraries ----------------------------------------------------------
+
 library(dplyr)
 library(tidyr)
 library(Rmisc)
@@ -22,11 +24,14 @@ library(tinytex)
 library(ggpubr)
 library(pals)
 
-####Quantitative chemistry####
-df_all <- read.csv(file="df_all.csv",head=TRUE)
+
+# Objective 2: Quantitative chemistry -------------------------------------
+
+df_all <- read.csv(file="Maynard_etal_AlkenylphenolQuantChem.csv",head=TRUE)
 #removing unnec. cols
 df_all <- subset(df_all, select = -c(1, 6:32,43:52))
 df_all[df_all == "#VALUE!"] <- NA
+
 
 df_all$A_pdw<-as.numeric(as.character(df_all$A_pdw))
 df_all$B_pdw<-as.numeric(as.character(df_all$B_pdw))
@@ -249,6 +254,7 @@ predplot_data<-ggplot(ag_dat)+
 	scale_y_continuous(limits = c(0,.2))
 predplot_data
 
+##export graph
 #tiff('predplot_data.tiff', units="in", width=8, height=5, res=500)
 #predplot_data
 #dev.off()
@@ -273,6 +279,7 @@ stage_line_plot<-ggplot(ag_dat)+
 	coord_cartesian(xlim=c(1,6), ylim=c(0,.2))
 stage_line_plot
 
+##EXPORT GRAPH
 #tiff('stage_line_plot.tiff', units="in", width=7, height=4, res=500)
 #stage_line_plot
 #dev.off()
