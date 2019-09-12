@@ -32,7 +32,7 @@ df_all <- read.csv(file="Maynard_etal_AlkenylphenolQuantChem.csv",head=TRUE)
 df_all <- subset(df_all, select = -c(1, 6:32,43:52))
 df_all[df_all == "#VALUE!"] <- NA
 
-
+#DATA CLEANING####
 df_all$A_pdw<-as.numeric(as.character(df_all$A_pdw))
 df_all$B_pdw<-as.numeric(as.character(df_all$B_pdw))
 df_all$C_pdw<-as.numeric(as.character(df_all$C_pdw))
@@ -103,6 +103,7 @@ datall$compound[datall$compound=="H_pdw"]="H"
 datall$compound[datall$compound=="I_pdw"]="I"
 datall$compound[datall$compound=="J_pdw"]="J"
 
+#ANALYSIS
 a5<-aggregate(props~tissue+plant, data=datall, FUN=sum) 
 
 beta1<-betareg(props~tissue, data=a5)
@@ -124,18 +125,15 @@ tissueplot2<-ggplot(a5, aes(x=tissue, y=props)) +
 	scale_color_manual(values=as.vector(kelly(21)), name = "Plant ID")
 tissueplot2
 
-#tiff('supp_tissue_plot', units="in", width=10, height=4, res=500)
-#tissueplot2
-#dev.off()
-
 ##too busy, selecting representative stages for each tissue
 
-##selected stages for each tissue
+##selecting representative stages for each tissue
 dat_select<-datall%>%
 	filter(tissue==c("Ripe pulp (1)","Unripe pulp (2)", "Flowers (4)","Seeds","Mature leaves"))
 
+#ANALYSIS
 a10<-aggregate(props~tissue+plant, data=dat_select, FUN=sum)
-a10<-a10[-c(35),]
+a10<-a10[-c(35),] #removing 2.1, weird chromatogram
 
 beta10<-betareg(props ~ tissue, data=a10)
 summary(beta10)
@@ -149,19 +147,6 @@ CLD(d10$emmeans,  Letters ='ABCDEFGHIJKLMNOPQRS')
 a10$tissue[a10$tissue=="Unripe pulp (2)"]="Unripe pulp"
 a10$tissue[a10$tissue=="Flowers (4)"]="Flowers"
 a10$tissue[a10$tissue=="Ripe pulp (1)"]="Ripe pulp"
-
-tissueplot10<-ggplot(a10, aes(x=tissue, y=props)) +
-	geom_boxplot() + geom_point(aes(color=as.character(plant)))+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
-	theme_minimal()+
-	scale_x_discrete(limits=c("Mature leaves","Flowers", "Unripe pulp","Ripe pulp",
-							  "Seeds"))+
-	scale_color_manual(values=as.vector(kelly(21)), name = "Plant ID")
-tissueplot10
-
-#tiff('tissueplot_select.tiff', units="in", width=6, height=4, res=500)
-#tissueplot10
-#dev.off()
 
 #plot w/o color
 tissueplot_bwj<-ggplot(a10, aes(x=tissue, y=props)) +
@@ -177,28 +162,16 @@ tissueplot_bwj<-ggplot(a10, aes(x=tissue, y=props)) +
 		  axis.text.x = element_text(angle=45, hjust=1))
 tissueplot_bwj
 
-tiff('tissueplot_bwj.tiff', units="in", width=6, height=5, res=500)
-tissueplot_bwj
-dev.off()
+#EXPORT PLOT
+#tiff('tissueplot_bwj.tiff', units="in", width=6, height=5, res=500)
+#tissueplot_bwj
+#dev.off()
 
-postscript('tissueplot_bwj.svg', width=6, height=5)
-tissueplot_bwj
-dev.off()
+#postscript('tissueplot_bwj.svg', width=6, height=5)
+#tissueplot_bwj
+#dev.off()
 
-tissueplot_lett<-ggplot(a10, aes(x=tissue, y=props)) +
-	geom_boxplot(outlier.shape = NA) + geom_jitter(position=position_jitter(width = 0.04), alpha=0.4)+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
-	theme_classic()+
-	scale_x_discrete(limits=c("Mature leaves","Flowers", "Unripe pulp","Ripe pulp",
-							  "Seeds"))+
-	stat_summary(geom = 'text', label = c("AB","A","BC","A","C"),
-				 fun.y = max, vjust = -0.8)+
-	scale_y_continuous(expand = c(0, 0), limits = c(0, 0.055))
-
-tissueplot_lett
-
-
-#alkenylphenols over fruit ripening
+##Alkenylphenols over fruit ripening====
 
 #creating columns for stage as continuous variable and stage^2 (quadratic term)
 dat[is.na(dat)] <- 0
@@ -243,46 +216,12 @@ predplot_all<-ggplot(ag_dat)+
 	geom_line(aes(x=stage.num, y=yhat_13),color="blue",size=1)
 predplot_all
 
-predplot_data<-ggplot(ag_dat)+
-	geom_point(aes(x=stage.num,y=props,color=plant))+
-	geom_line(aes(x=stage.num, y=yhat_12),color="black",size=1,linetype="dashed")+
-	geom_line(aes(x=stage.num, y=yhat_13),color="black",size=1)+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
-	theme_minimal()+
-	scale_color_manual(values=as.vector(kelly(21)), name = "Plant ID")+
-	scale_x_reverse(breaks=c(6,5,4,3,2,1))+
-	scale_y_continuous(limits = c(0,.2))
-predplot_data
-
-##export graph
-#tiff('predplot_data.tiff', units="in", width=8, height=5, res=500)
-#predplot_data
-#dev.off()
-
 null.mod<-betareg(props~1, data=ag_dat)
 
 modcomp<-aictab(cand.set=list(beta12,beta13,null.mod),
 	   modnames=c("nonlinear","linear","null"))#AIC table
-#top model is betareg with quad term
-modcomp
 
-stage_line_plot<-ggplot(ag_dat)+
-	geom_point(aes(x=stage.num,y=props,color=plant))+
-	stat_smooth(aes(x=stage.num,y=props),method = "lm", formula = y ~ x + I(x^2), size = 1,
-				linetype="dashed", color="black")+
-	stat_smooth(aes(x=stage.num,y=props),method = "lm", formula = y ~ x, size = 1, color="black")+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
-	theme_minimal()+
-	scale_color_manual(values=as.vector(kelly(21)), name = "Plant ID")+
-	scale_x_reverse(breaks=c(6,5,4,3,2,1))+
-	scale_y_continuous(expand=c(0,0), limits=c(-.01,2))+
-	coord_cartesian(xlim=c(1,6), ylim=c(0,.2))
-stage_line_plot
-
-##EXPORT GRAPH
-#tiff('stage_line_plot.tiff', units="in", width=7, height=4, res=500)
-#stage_line_plot
-#dev.off()
+modcomp #top model is nonlinear (mod with quad term)
 
 library(gridExtra)
 library(grid)
@@ -325,10 +264,10 @@ stage_line_plot2+
 			 x=6, y=-0.005, size=4, color="black")
 
 
-
-tiff('stage_line_plot2.tiff', units="in", width=8, height=5, res=500)
-stage_line_plot2
-dev.off()
+##EXPORT PLOT
+#tiff('stage_line_plot2.tiff', units="in", width=8, height=5, res=500)
+#stage_line_plot2
+#dev.off()
 
 #leaf analysis
 a20<-aggregate(props~plant+stage,data=dfl,FUN=sum)
@@ -362,9 +301,10 @@ leaf_plot_bw<-ggplot(a20, aes(x=stagen,y=props))+
 				 
 leaf_plot_bw
 
-tiff('leaf_plot_bw.tiff', units="in", width=5, height=4, res=500)
-leaf_plot_bw
-dev.off()
+#EXPORT PLOT
+#tiff('leaf_plot_bw.tiff', units="in", width=5, height=4, res=500)
+#leaf_plot_bw
+#dev.off()
 
 ##summary stats
 library(plyr)
@@ -376,8 +316,10 @@ cdata <- ddply(datall, c("tissue", "compound"), summarise,
 
 cdata <- cdata[order(cdata$tissue),]
 cdata[is.na(cdata)] <- 'nd'
+head(cdata)
 
-write.table(cdata, file = "stats.csv", sep = ",", quote = FALSE, row.names = F)
+#EXPORT SUMMARY STATS TABLE
+#write.table(cdata, file = "stats.csv", sep = ",", quote = FALSE, row.names = F)
 
 ##SUMMARY PLOT
 datall <- datall[order(datall$compound),]
@@ -552,7 +494,9 @@ tiff('supp.plot.all.tiff', units="in", width=10, height=4, res=500)
 supp.plot.all
 dev.off()
 
-####Fungal bioassays####
+
+# Fungal bioassays --------------------------------------------------------
+
 datf <- read.csv(file="Maynard_etal_FungalBioassays.csv",head=TRUE,fill=T)
 datf <- datf[1:81,]
 
@@ -603,16 +547,17 @@ plota<-ggplot(datf, aes(x=Conc, y=abs_corr, group=nfungi))+
 	geom_point(aes(color=nfungi))+
 	theme_classic()+
 	scale_color_viridis(discrete = T, option = "D", labels=leg_fung)+
-	labs(x="Concentration (Prop. in ripe infruct.)", y="Absorbance (OD)", color=" ")+
+	labs(x="Alkenylphenol concentration (mg/mL)", y="Average absorbance (OD)", color=" ")+
 	theme(legend.text.align = 0, text = element_text(size=18),legend.position="top")+ 
-	annotate("text", x = 2.20, y = 0.66,
+	annotate("text", x = 28, y = 0.66,
 			 label = "paste(italic(R) ^ 2, \" = 0.84\")", parse = TRUE, size =5)+ 
-	annotate("text", x = 2.20, y = 0.54,
+	annotate("text", x = 28, y = 0.55,
 			 label = "paste(italic(R) ^ 2, \" = 0.04\")", parse = TRUE, size =5)+ 
-	annotate("text", x = 2.20, y = 0.415,
-			 label = "paste(italic(R) ^ 2, \" = 0.77\")", parse = TRUE, size =5)
+	annotate("text", x = 28, y = 0.415,
+			 label = "paste(italic(R) ^ 2, \" = 0.78\")", parse = TRUE, size =5)
 plota
 
+#EXPORT PLOT
 tiff('fungiplot.tiff', units="in", width=8, height=5, res=500)
 plota
 dev.off()
@@ -633,12 +578,15 @@ plot.bw<-ggplot(datf, aes(x=Conc, y=abs_corr, group=nfungi))+
 			 label = "paste(italic(R) ^ 2, \" = 0.77\")", parse = TRUE)
 plot.bw
 
+#EXPORT B&W PLOT
 tiff('fungiplot_bw.tiff', units="in", width=8, height=5, res=500)
 plot.bw
 dev.off()
 
 
-####Animal feeding trials####
+
+# Animal preference trials ------------------------------------------------
+
 animal <- read.csv(file="Maynard_etal_AlkenylphenolAnimalTrials.csv",head=TRUE)
 
 #only animals that participated
