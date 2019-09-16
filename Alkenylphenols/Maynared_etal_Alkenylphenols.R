@@ -343,7 +343,8 @@ a.plot<-ggplot(a.dat, aes(x=tissue,y=props))+
 							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
-	theme(legend.position="none",text = element_text(size=15))
+	theme(legend.position="none",text = element_text(size=15))+
+  coord_flip()
 
 a.plot
 
