@@ -226,7 +226,7 @@ stage_line_plot2<-ggplot(ag_dat)+
 	geom_line(aes(x=stage.num,y=props,color=plant),alpha=0.5,size=1,show.legend = F)+
 	stat_smooth(aes(x=stage.num,y=props),method = "lm", formula = y ~ x + I(x^2), size = 1.5,
 				linetype="solid", color="black")+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	theme_classic()+
 	scale_color_viridis(discrete = T, option = "D")+
 	scale_x_reverse(breaks=c(6,5,4,3,2,1))+
@@ -238,43 +238,6 @@ stage_line_plot2
 ##EXPORT PLOT
 #tiff('stage_line_plot2.tiff', units="in", width=8, height=5, res=500)
 #stage_line_plot2
-#dev.off()
-
-#leaf analysis
-a20<-aggregate(props~plant+stage,data=dfl,FUN=sum)
-a20$stage<-as.factor(a20$stage)
-levels(a20$stage)
-a20$prop1<-(a20$props+0.01)
-
-shapiro.test(a20$props)#not norm dist
-
-beta20<-betareg(prop1~stage, data=a20)
-summary(beta20)
-
-d20<-emmeans(beta20,pairwise~stage, type="response")
-d20
-
-
-#Mann-Whiteney U test b/c data is not normally distributed
-#Mann-Whitney U test is a non-parametric test that can be used in place of an unpaired t-test
-wilcox.test(a20$props~a20$stage)#W=20, p=0.016
-
-a20$stagen[a20$stage=="E"]="Expanding leaf"
-a20$stagen[a20$stage=="M"]="Mature leaf"
-
-leaf_plot_bw<-ggplot(a20, aes(x=stagen,y=props))+
-				  	geom_boxplot() + 
-	geom_jitter(position=position_jitter(width = 0.04), alpha=0.5, size=2)+
-				  	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
-				  	scale_x_discrete(limits=c("Expanding leaf", "Mature leaf"))+
-				  	theme_classic()+
-	scale_y_continuous(limits = c(0,0.008))+theme(text = element_text(size=15))
-				 
-leaf_plot_bw
-
-#EXPORT PLOT
-#tiff('leaf_plot_bw.tiff', units="in", width=5, height=4, res=500)
-#leaf_plot_bw
 #dev.off()
 
 ##summary stats
