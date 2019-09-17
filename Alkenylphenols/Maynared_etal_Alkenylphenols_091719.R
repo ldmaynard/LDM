@@ -258,23 +258,23 @@ head(cdata)
 ##SUMMARY PLOT
 datall <- datall[order(datall$compound),]
 datall[is.na(datall)] <- 0
-a.dat<-slice(datall, 1:126)
-b.dat<-slice(datall, 127:252)
-c.dat<-slice(datall, 253:378)
-d.dat<-slice(datall, 379:504)
-e.dat<-slice(datall, 505:630)
-f.dat<-slice(datall, 631:756)
-g.dat<-slice(datall, 757:882)
-h.dat<-slice(datall, 883:1008)
-i.dat<-slice(datall, 1009:1134)
-j.dat<-slice(datall, 1135:1260)
+a.dat<-slice(datall, 1:117)
+b.dat<-slice(datall, 118:234)
+c.dat<-slice(datall, 235:351)
+d.dat<-slice(datall, 352:468)
+e.dat<-slice(datall, 469:585)
+f.dat<-slice(datall, 586:702)
+g.dat<-slice(datall, 703:819)
+h.dat<-slice(datall, 820:936)
+i.dat<-slice(datall, 937:1053)
+j.dat<-slice(datall, 1054:1170)
 
 a.plot<-ggplot(a.dat, aes(x=tissue,y=props))+
 	geom_boxplot(aes(fill=tissue)) + geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	scale_x_discrete(limits=c("Dev. flowers (6)",
 							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
+							  "Ripe pulp (1)","Seeds", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
 	theme(legend.position="none",text = element_text(size=15))+
@@ -284,150 +284,113 @@ a.plot
 
 b.plot<-ggplot(b.dat, aes(x=tissue,y=props))+
 	geom_boxplot(aes(fill=tissue)) + geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	scale_x_discrete(limits=c("Dev. flowers (6)",
 							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
+							  "Ripe pulp (1)","Seeds", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
-	theme(legend.position="none",text = element_text(size=15))
+	theme(legend.position="none",text = element_text(size=15))+
+  coord_flip()
 
 c.plot<-ggplot(c.dat, aes(x=tissue,y=props))+
 	geom_boxplot(aes(fill=tissue)) + geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	scale_x_discrete(limits=c("Dev. flowers (6)",
 							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
+							  "Ripe pulp (1)","Seeds", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
-	theme(legend.position="none",text = element_text(size=15))
+	theme(legend.position="none",text = element_text(size=15))+
+  coord_flip()
 
 d.plot<-ggplot(d.dat, aes(x=tissue,y=props))+
 	geom_boxplot(aes(fill=tissue)) + geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	scale_x_discrete(limits=c("Dev. flowers (6)",
 							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
+							  "Ripe pulp (1)","Seeds", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
-	theme(legend.position="none",text = element_text(size=15))
+	theme(legend.position="none",text = element_text(size=15))+
+  coord_flip()
 
 e.plot<-ggplot(e.dat, aes(x=tissue,y=props))+
 	geom_boxplot(aes(fill=tissue)) + geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	scale_x_discrete(limits=c("Dev. flowers (6)",
 							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
+							  "Ripe pulp (1)","Seeds", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
-	theme(legend.position="none",text = element_text(size=15))
+	theme(legend.position="none",text = element_text(size=15))+
+  coord_flip()
 
 f.plot<-ggplot(f.dat, aes(x=tissue,y=props))+
 	geom_boxplot(aes(fill=tissue)) + geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	scale_x_discrete(limits=c("Dev. flowers (6)",
 							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
+							  "Ripe pulp (1)","Seeds", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
-	theme(legend.position="none",text = element_text(size=15))
+	theme(legend.position="none",text = element_text(size=15), axis.text.y=element_blank())+
+  coord_flip()
 
 g.plot<-ggplot(g.dat, aes(x=tissue,y=props))+
 	geom_boxplot(aes(fill=tissue)) + geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	scale_x_discrete(limits=c("Dev. flowers (6)",
 							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
+							  "Ripe pulp (1)","Seeds", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
-	theme(legend.position="none",text = element_text(size=15))
+	theme(legend.position="none",text = element_text(size=15), axis.text.y=element_blank())+
+  coord_flip()
 
 h.plot<-ggplot(h.dat, aes(x=tissue,y=props))+
 	geom_boxplot(aes(fill=tissue)) + geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	scale_x_discrete(limits=c("Dev. flowers (6)",
 							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
+							  "Ripe pulp (1)","Seeds", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
-	theme(legend.position="none",text = element_text(size=15))
+	theme(legend.position="none",text = element_text(size=15), axis.text.y=element_blank())+
+  coord_flip()
 
 i.plot<-ggplot(i.dat, aes(x=tissue,y=props))+
 	geom_boxplot(aes(fill=tissue)) + geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	scale_x_discrete(limits=c("Dev. flowers (6)",
 							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
+							  "Ripe pulp (1)","Seeds", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
-	theme(legend.position="none",text = element_text(size=15))
+	theme(legend.position="none",text = element_text(size=15), axis.text.y=element_blank())+
+  coord_flip()
 
 j.plot<-ggplot(j.dat, aes(x=tissue,y=props))+
 	geom_boxplot(aes(fill=tissue)) + geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	scale_x_discrete(limits=c("Dev. flowers (6)",
 							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
+							  "Ripe pulp (1)","Seeds", "Mature leaves"))+
 	theme_minimal()+
 	scale_fill_viridis(discrete = T, option = "D")+ 
-	theme(legend.position="none",text = element_text(size=15))
+	theme(legend.position="none",text = element_text(size=15), axis.text.y=element_blank())+
+  coord_flip()
 
-tiff('supp_fig.tiff', units="in", width=25, height=25, res=500)
-ggarrange(a.plot, b.plot,c.plot,d.plot,e.plot,f.plot,g.plot,h.plot,i.plot,j.plot, 
-		  labels = c("A", "B","C","D","E","F","G","H","I","J"),heights = c(20, 20),
-		  ncol = 2, nrow = 5, align = "v",
-		  font.label = list(size = 22))
-dev.off()
+sum.plot1<-ggarrange(a.plot, f.plot,b.plot,g.plot,c.plot,h.plot,d.plot,i.plot,e.plot,j.plot, 
+                     labels = c("A", "F","B","G","C","H","D","I","E","J"),heights = c(20, 20),
+                     ncol = 2, nrow = 5, align = "v",
+                     font.label = list(size = 22))
+sum.plot1
 
-tiff('supp_fig_ab.tiff', units="in", width=12, height=10, res=500)
-ggarrange(a.plot, b.plot, 
-		  labels = c("A", "B"),heights = c(5, 5),
-		  ncol = 1, nrow = 2, align = "v",
-		  font.label = list(size = 22))
-dev.off()
-
-tiff('supp_fig_cd.tiff', units="in", width=12, height=10, res=500)
-ggarrange(c.plot, d.plot, 
-		  labels = c("C", "D"),heights = c(5, 5),
-		  ncol = 1, nrow = 2, align = "v",
-		  font.label = list(size = 22))
-dev.off()
-
-tiff('supp_fig_ef.tiff', units="in", width=12, height=10, res=500)
-ggarrange(e.plot, f.plot, 
-		  labels = c("E", "F"),heights = c(5, 5),
-		  ncol = 1, nrow = 2, align = "v",
-		  font.label = list(size = 22))
-dev.off()
-
-tiff('supp_fig_gh.tiff', units="in", width=12, height=10, res=500)
-ggarrange(g.plot, h.plot, 
-		  labels = c("G", "H"),heights = c(5, 5),
-		  ncol = 1, nrow = 2, align = "v",
-		  font.label = list(size = 22))
-dev.off()
-
-tiff('supp_fig_ij.tiff', units="in", width=12, height=10, res=500)
-ggarrange(i.plot, j.plot, 
-		  labels = c("I", "J"),heights = c(5, 5),
-		  ncol = 1, nrow = 2, align = "v",
-		  font.label = list(size = 22))
-dev.off()
-
-supp.plot.all<-ggplot(datall, aes(x=tissue, y=props,fill=compound)) +
-	geom_boxplot() + #geom_point()+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
-	theme_minimal()+
-	scale_x_discrete(limits=c("Dev. flowers (6)",
-							  "Flowers (5)","Flowers (4)","Unripe pulp (3)", "Unripe pulp (2)",
-							  "Ripe pulp (1)","Seeds","Exp. leaves", "Mature leaves"))+
-	scale_fill_manual(values=as.vector(tol(10)), name = "Compound")+ 
-	theme(text = element_text(size=10))
-supp.plot.all	
-
-tiff('supp.plot.all.tiff', units="in", width=10, height=4, res=500)
-supp.plot.all
-dev.off()
+##EXPORT PLOT
+#tiff('supp_fig.tiff', units="in", width=25, height=25, res=500)
+#sum.plot1
+#dev.off()
 
 
 # Fungal bioassays --------------------------------------------------------
