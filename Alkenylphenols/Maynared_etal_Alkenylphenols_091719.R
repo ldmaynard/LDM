@@ -184,6 +184,7 @@ ag_dat$plant<-as.character(ag_dat$plant)
 beta12<-betareg(props~stage.num+stage2 , data=ag_dat)
 summary(beta12)#stage and quad. term are significant
 #since quad. term is significant, suggests the data are not linear
+#stage p=0.0234, quad term p<0.001
 
 #prediction plot
 ag_dat$yhat_12<-predict(beta12)
