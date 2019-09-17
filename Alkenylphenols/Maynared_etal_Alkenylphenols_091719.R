@@ -126,10 +126,7 @@ tissueplot2
 ##too busy, selecting representative stages for each tissue
 
 ##selecting representative stages for each tissue
-#dat_select<-datall%>%
-	filter(tissue==c("Ripe pulp (1)","Unripe pulp (2)", "Flowers (4)","Seeds","Mature leaves"))
-#dat_select[dat_select == "NA"] <- 0
-
+##"Ripe pulp (1)","Unripe pulp (2)", "Flowers (4)","Seeds","Mature leaves"
 datall <- datall[order(datall$stage),]
 dat_select<-datall[c(1:470,661:870,1131:1170),]
 
@@ -152,7 +149,7 @@ a10$tissue[a10$tissue=="Ripe pulp (1)"]="Ripe pulp"
 #plot w/o color
 tissueplot_bwj<-ggplot(a10, aes(x=tissue, y=props)) +
 	geom_boxplot(outlier.shape = NA) + geom_jitter(position=position_jitter(width = 0.04), alpha=0.4)+
-	labs(x=" ", y="Total alkenylphenols (proportion dry wt)")+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	theme_classic()+
 	scale_x_discrete(limits=c("Mature leaves","Flowers", "Unripe pulp","Ripe pulp",
 							  "Seeds"))+
