@@ -546,12 +546,6 @@ ggarrange(batpref, birdpref,
 		  ncol = 2, nrow = 1, align = "v")
 dev.off()
 
-tiff('animal_pref1.tiff', units="in", width=4, height=8, res=500)
-ggarrange(batpref, birdpref1, 
-		  labels = c("A", "B"),heights = c(5, 5),
-		  ncol = 1, nrow = 2, align = "v")
-dev.off()
-
 ####Removal study####
 remo <- read.csv(file="Maynard_etal_PiperRemovalStudy.csv",head=TRUE,fill=T)
 
