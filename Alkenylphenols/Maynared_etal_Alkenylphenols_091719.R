@@ -426,10 +426,28 @@ datf$nfungi[datf$fungi=="R3"]="Microdochium lycopodium"
 datf$nfungi[datf$fungi=="R23"]="Fusarium verticillioides"
 datf$nfungi[datf$fungi=="R26"]="Fusarium sp."
 
+#average triplicates
+ag.fun<-aggregate(abs_corr~Conc+fungi+well, data=datf, FUN=mean) 
+mod.fun<-lm(abs_corr~Conc*fungi, data=ag.fun)
+summary(mod.fun)
+Anova(mod.fun)
+?Anova
+
+summary(mod.fun)$coef
+
+coef(mod.fun)
+
+  #effect size
+#across range of concentrations. for every 10mg/ml inc in alk concen
+#fungal growth declined by x 
+
+
 datf <- datf[order(datf$fungi),]
 R23<-slice(datf, 1:27)
 R26<-slice(datf, 28:54)
 R3<-slice(datf, 55:81)
+
+#average abs_corr before analysis
 
 mod23<-lm(data = R23, abs_corr~Conc)
 mod26<-lm(data = R26, abs_corr~Conc)
@@ -499,9 +517,9 @@ plot.bw<-ggplot(datf, aes(x=Conc, y=abs_corr, group=nfungi))+
 plot.bw
 
 #EXPORT B&W PLOT
-tiff('fungiplot_bw.tiff', units="in", width=8, height=5, res=500)
-plot.bw
-dev.off()
+#tiff('fungiplot_bw.tiff', units="in", width=8, height=5, res=500)
+#plot.bw
+#dev.off()
 
 
 
