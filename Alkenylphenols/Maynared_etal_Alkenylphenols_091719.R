@@ -178,6 +178,9 @@ tissue.tab <- ddply(a10, c("tissue"), summarise,
                se   = sd / sqrt(N))
 tissue.tab
 
+#EXPORT TABLE
+#write.table(tissue.tab, file = "TableS4.csv", sep = ",", quote = FALSE, row.names = F)
+
 ##Alkenylphenols over fruit ripening------------------------------------
 
 #creating columns for stage as continuous variable and stage^2 (quadratic term)
@@ -255,6 +258,9 @@ dev.tab <- ddply(ag_dat, c("stage.num"), summarise,
                     sd   = sd(props),
                     se   = sd / sqrt(N))
 dev.tab
+
+#EXPORT TABLE
+#write.table(dev.tab, file = "TableS5.csv", sep = ",", quote = FALSE, row.names = F)
 
 ##summary stats
 library(plyr)
@@ -508,8 +514,8 @@ animal<-animal%>%
 	filter(participate==1)
 
 #separating bats and birds 
-bat<-slice(animal, 1:32)
-bird<-slice(animal, 33:58)
+bat<-slice(animal, 1:31)
+bird<-slice(animal, 32:58)
 
 
 birdg <- gather(bird, "treatment", "amount_eaten", 17:18)
@@ -528,11 +534,11 @@ batg$treatment<-as.character(batg$treatment)
 bat_ag<-aggregate(amount_eaten~ID+treatment, data=batg, FUN=mean) 
 bat_1<-spread(data=bat_ag, treatment, amount_eaten)
 
-shapiro.test(bat_1$c.eaten)#not norm dist?
-shapiro.test(bat_1$t.eaten)#norm dist
+shapiro.test(bat_1$t.eaten)#not norm dist?
+shapiro.test(bat_1$c.eaten)#norm dist
 
-t.test(bird_1$c.eaten, bird_1$t.eaten, paired = T)#t=0.30,df=9,p=0.775
-t.test(bat_1$c.eaten, bat_1$t.eaten, paired = T)#t=2.73,df=16,p=0.015
+t.test(bird_1$c.eaten, bird_1$t.eaten, paired = T)#t=0.24,df=9,p=0.8104
+t.test(bat_1$c.eaten, bat_1$t.eaten, paired = T)#t=3.8959,df=15,p=0.00143
 
 #change names for graph
 bat_ag$treatment[bat_ag$treatment=="t.eaten"]="Treatment"
@@ -556,11 +562,30 @@ birdpref<-ggplot(bird_ag,aes(x=treatment,y=amount_eaten))+geom_boxplot()+
 	theme(text = element_text(size = 18))
 birdpref
 
-tiff('animal_pref.tiff', units="in", width=8, height=4, res=500)
-ggarrange(batpref, birdpref, 
-		  labels = c("a", "b"),heights = c(2, 2),
-		  ncol = 2, nrow = 1, align = "v")
-dev.off()
+animal.plot<-ggarrange(batpref, birdpref, 
+                       labels = c("a", "b"),heights = c(2, 2),
+                       ncol = 2, nrow = 1, align = "v")
+animal.plot
+
+#EXPORT PLOT
+#tiff('animal_pref.tiff', units="in", width=8, height=4, res=500)
+#animal.plot
+#dev.off()
+
+bat.tab <- ddply(bat_ag, c("treatment"), summarise,
+                 N    = length(amount_eaten),
+                 mean = mean(amount_eaten),
+                 sd   = sd(amount_eaten),
+                 se   = sd / sqrt(N))
+bat.tab
+
+bird.tab <- ddply(bird_ag, c("treatment"), summarise,
+                 N    = length(amount_eaten),
+                 mean = mean(amount_eaten),
+                 sd   = sd(amount_eaten),
+                 se   = sd / sqrt(N))
+bird.tab
+
 
 ####Removal study####
 remo <- read.csv(file="Maynard_etal_PiperRemovalStudy.csv",head=TRUE,fill=T)
