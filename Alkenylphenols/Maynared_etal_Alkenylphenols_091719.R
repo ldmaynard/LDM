@@ -169,7 +169,16 @@ tissueplot_bwj
 #tissueplot_bwj
 #dev.off()
 
-##Alkenylphenols over fruit ripening====
+#SUMMARY STATS
+library(plyr)
+tissue.tab <- ddply(a10, c("tissue"), summarise,
+               N    = length(props),
+               mean = mean(props),
+               sd   = sd(props),
+               se   = sd / sqrt(N))
+tissue.tab
+
+##Alkenylphenols over fruit ripening------------------------------------
 
 #creating columns for stage as continuous variable and stage^2 (quadratic term)
 dat[is.na(dat)] <- 0
@@ -237,6 +246,15 @@ stage_line_plot2
 #tiff('stage_line_plot2.tiff', units="in", width=8, height=5, res=500)
 #stage_line_plot2
 #dev.off()
+
+#SUMMARY STATS
+library(plyr)
+dev.tab <- ddply(ag_dat, c("stage.num"), summarise,
+                    N    = length(props),
+                    mean = mean(props),
+                    sd   = sd(props),
+                    se   = sd / sqrt(N))
+dev.tab
 
 ##summary stats
 library(plyr)
