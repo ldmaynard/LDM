@@ -33,7 +33,7 @@ df_all <- subset(df_all, select = -c(1, 6:32))
 df_all[df_all == "#VALUE!"] <- NA
 df_all[df_all == "NA"] <- 0
 
-#DATA CLEANING####
+ ##DATA CLEANING####
 df_all$A_pdw<-as.numeric(as.character(df_all$A_pdw))
 df_all$B_pdw<-as.numeric(as.character(df_all$B_pdw))
 df_all$C_pdw<-as.numeric(as.character(df_all$C_pdw))
@@ -181,7 +181,7 @@ tissue.tab
 #EXPORT TABLE
 #write.table(tissue.tab, file = "TableS4.csv", sep = ",", quote = FALSE, row.names = F)
 
-##Alkenylphenols over fruit ripening------------------------------------
+ ##Alkenylphenols over fruit ripening------------------------------------
 
 #creating columns for stage as continuous variable and stage^2 (quadratic term)
 dat[is.na(dat)] <- 0
@@ -417,7 +417,7 @@ sum.plot1
 
 # Fungal bioassays --------------------------------------------------------
 
-datf <- read.csv(file="Maynard_etal_FungalBioassays.csv",head=TRUE,fill=T)
+datf<- read.csv(file="Maynard_etal_FungalBioassays.csv",head=TRUE,fill=T)
 datf <- datf[1:81,]
 
 datf$Conc<-as.numeric(datf$Conc)
@@ -436,24 +436,12 @@ library(effects)
 summary(allEffects(mod.fun))
 plot(allEffects(mod.fun))
 
-  #effect size
-#across range of concentrations. for every 10mg/ml inc in alk concen
-#fungal growth declined by x 
-
-
 datf <- datf[order(datf$fungi),]
 ag.fun<-ag.fun[order(ag.fun$nfungi),]
 
 R26<-slice(ag.fun, 1:9)
 R23<-slice(ag.fun, 10:18)
 R3<-slice(ag.fun, 19:27)
-
-
-R23f<-slice(datf, 1:27)
-R26f<-slice(datf, 28:54)
-R3f<-slice(datf, 55:81)
-
-#average abs_corr before analysis
 
 mod23<-lm(data = R23, abs_corr~Conc)
 mod26<-lm(data = R26, abs_corr~Conc)
@@ -481,11 +469,13 @@ predplot3<-ggplot(R3)+
 	geom_point(aes(x=Conc, y=abs_corr))
 predplot3
 
+##DATA PLOT
+###load italics for legend
 leg_fung <- c(expression(paste(italic("Fusarium "), "sp.")),
 			 expression(paste(italic("Fusarium verticillioides"))), 
 			 expression(paste(italic("Microdochium lycopodinum"))))
 
-
+#plot
 plota<-ggplot(ag.fun, aes(x=Conc, y=abs_corr, group=nfungi))+
 	geom_smooth(aes(color=nfungi), method = "lm", se=T)+
 	geom_point(aes(color=nfungi))+
@@ -499,7 +489,7 @@ plota<-ggplot(ag.fun, aes(x=Conc, y=abs_corr, group=nfungi))+
 			 label = "paste(italic(R) ^ 2, \" = 0.12\")", parse = TRUE, size =5)+ 
 	annotate("text", x = 28, y = 0.415,
 			 label = "paste(italic(R) ^ 2, \" = 0.80\")", parse = TRUE, size =5)+
-  scale_x_continuous(expand = c(0, 0), limits = c(0.0,32.0))
+  scale_x_continuous(expand = c(0, 0), limits = c(0.0,33.0))
 plota
 
 #EXPORT PLOT
