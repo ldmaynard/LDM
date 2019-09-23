@@ -422,20 +422,19 @@ datf <- datf[1:81,]
 
 datf$Conc<-as.numeric(datf$Conc)
 datf$fungi<-as.character(datf$fungi)
-datf$nfungi[datf$fungi=="R3"]="Microdochium lycopodium"
+datf$nfungi[datf$fungi=="R3"]="Microdochium lycopodinum"
 datf$nfungi[datf$fungi=="R23"]="Fusarium verticillioides"
 datf$nfungi[datf$fungi=="R26"]="Fusarium sp."
 
 #average triplicates
-ag.fun<-aggregate(abs_corr~Conc+fungi+well, data=datf, FUN=mean) 
-mod.fun<-lm(abs_corr~Conc*fungi, data=ag.fun)
+ag.fun<-aggregate(abs_corr~Conc+nfungi+well, data=datf, FUN=mean) 
+mod.fun<-lm(abs_corr~Conc*nfungi, data=ag.fun)
 summary(mod.fun)
 Anova(mod.fun)
-?Anova
 
-summary(mod.fun)$coef
-
-coef(mod.fun)
+library(effects)
+summary(allEffects(mod.fun))
+plot(allEffects(mod.fun))
 
   #effect size
 #across range of concentrations. for every 10mg/ml inc in alk concen
@@ -443,9 +442,16 @@ coef(mod.fun)
 
 
 datf <- datf[order(datf$fungi),]
-R23<-slice(datf, 1:27)
-R26<-slice(datf, 28:54)
-R3<-slice(datf, 55:81)
+ag.fun<-ag.fun[order(ag.fun$nfungi),]
+
+R26<-slice(ag.fun, 1:9)
+R23<-slice(ag.fun, 10:18)
+R3<-slice(ag.fun, 19:27)
+
+
+R23f<-slice(datf, 1:27)
+R26f<-slice(datf, 28:54)
+R3f<-slice(datf, 55:81)
 
 #average abs_corr before analysis
 
@@ -453,9 +459,9 @@ mod23<-lm(data = R23, abs_corr~Conc)
 mod26<-lm(data = R26, abs_corr~Conc)
 mod3<-lm(data = R3, abs_corr~Conc)
 
-summary(mod23)#p<0.0001
-summary(mod26)#p=0.275
-summary(mod3)#p<0.0001
+summary(mod23)#t=-7.03,p=0.0002,r2=0.88
+summary(mod26)#t=-1.0, p=0.351, r2=0.12
+summary(mod3)#t=-5.213, p=0.00124, r2=0.80
 
 R23$yhat<-predict(mod23)
 predplot23<-ggplot(R23)+
@@ -477,10 +483,10 @@ predplot3
 
 leg_fung <- c(expression(paste(italic("Fusarium "), "sp.")),
 			 expression(paste(italic("Fusarium verticillioides"))), 
-			 expression(paste(italic("Microdochium lycopodium"))))
+			 expression(paste(italic("Microdochium lycopodinum"))))
 
 
-plota<-ggplot(datf, aes(x=Conc, y=abs_corr, group=nfungi))+
+plota<-ggplot(ag.fun, aes(x=Conc, y=abs_corr, group=nfungi))+
 	geom_smooth(aes(color=nfungi), method = "lm", se=T)+
 	geom_point(aes(color=nfungi))+
 	theme_classic()+
@@ -488,11 +494,12 @@ plota<-ggplot(datf, aes(x=Conc, y=abs_corr, group=nfungi))+
 	labs(x="Alkenylphenol concentration (mg/mL)", y="Average absorbance (OD)", color=" ")+
 	theme(legend.text.align = 0, text = element_text(size=18),legend.position="top")+ 
 	annotate("text", x = 28, y = 0.66,
-			 label = "paste(italic(R) ^ 2, \" = 0.84\")", parse = TRUE, size =5)+ 
+			 label = "paste(italic(R) ^ 2, \" = 0.88\")", parse = TRUE, size =5)+ 
 	annotate("text", x = 28, y = 0.55,
-			 label = "paste(italic(R) ^ 2, \" = 0.04\")", parse = TRUE, size =5)+ 
+			 label = "paste(italic(R) ^ 2, \" = 0.12\")", parse = TRUE, size =5)+ 
 	annotate("text", x = 28, y = 0.415,
-			 label = "paste(italic(R) ^ 2, \" = 0.78\")", parse = TRUE, size =5)
+			 label = "paste(italic(R) ^ 2, \" = 0.80\")", parse = TRUE, size =5)+
+  scale_x_continuous(expand = c(0, 0), limits = c(0.0,32.0))
 plota
 
 #EXPORT PLOT
