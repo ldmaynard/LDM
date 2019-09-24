@@ -33,7 +33,7 @@ df_all <- subset(df_all, select = -c(1, 6:32))
 df_all[df_all == "#VALUE!"] <- NA
 df_all[df_all == "NA"] <- 0
 
- ##DATA CLEANING####
+##DATA CLEANING
 df_all$A_pdw<-as.numeric(as.character(df_all$A_pdw))
 df_all$B_pdw<-as.numeric(as.character(df_all$B_pdw))
 df_all$C_pdw<-as.numeric(as.character(df_all$C_pdw))
@@ -146,7 +146,7 @@ a10$tissue[a10$tissue=="Unripe pulp (2)"]="Unripe pulp"
 a10$tissue[a10$tissue=="Flowers (4)"]="Flowers"
 a10$tissue[a10$tissue=="Ripe pulp (1)"]="Ripe pulp"
 
-#plot w/o color
+
 tissueplot_bwj<-ggplot(a10, aes(x=tissue, y=props)) +
 	geom_boxplot(outlier.shape = NA) + geom_jitter(position=position_jitter(width = 0.04), alpha=0.4)+
 	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
@@ -239,10 +239,10 @@ stage_line_plot2<-ggplot(ag_dat)+
 	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	theme_classic()+
 	scale_color_viridis(discrete = T, option = "D")+
-	scale_x_reverse(breaks=c(6,5,4,3,2,1))+
+	scale_x_reverse(breaks=c(6,5,4,3,2,1), expand=c(0,0))+
 	theme(text = element_text(size = 15))+
-	scale_y_continuous(expand=c(0,0))+
-	coord_cartesian(xlim=c(1,6), ylim=c(0,.1))
+	scale_y_continuous(expand=c(0.0,0.0))+
+	coord_cartesian(xlim=c(1.0,6.0), ylim=c(0.0,.1))
 stage_line_plot2
 
 ##EXPORT PLOT
@@ -415,7 +415,7 @@ sum.plot1
 #dev.off()
 
 
-# Fungal bioassays --------------------------------------------------------
+# Objective 3: Fungal bioassays --------------------------------------------------------
 
 datf<- read.csv(file="Maynard_etal_FungalBioassays.csv",head=TRUE,fill=T)
 datf <- datf[1:81,]
@@ -489,7 +489,7 @@ plota<-ggplot(ag.fun, aes(x=Conc, y=abs_corr, group=nfungi))+
 			 label = "paste(italic(R) ^ 2, \" = 0.12\")", parse = TRUE, size =5)+ 
 	annotate("text", x = 28, y = 0.415,
 			 label = "paste(italic(R) ^ 2, \" = 0.80\")", parse = TRUE, size =5)+
-  scale_x_continuous(expand = c(0, 0), limits = c(0.0,33.0))
+  scale_x_continuous(expand = c(0, 0), limits = c(0.0,32.0))
 plota
 
 #EXPORT PLOT
@@ -520,7 +520,7 @@ plot.bw
 
 
 
-# Animal preference trials ------------------------------------------------
+# Objective 4b: Animal preference trials ------------------------------------------------
 
 animal <- read.csv(file="Maynard_etal_AlkenylphenolAnimalTrials.csv",head=TRUE)
 
@@ -602,7 +602,7 @@ bird.tab <- ddply(bird_ag, c("treatment"), summarise,
 bird.tab
 
 
-####Removal study####
+# Objective 4a: Removal study####
 remo <- read.csv(file="Maynard_etal_PiperRemovalStudy.csv",head=TRUE,fill=T)
 
 remo<-remo[-c(71),]
