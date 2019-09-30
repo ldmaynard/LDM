@@ -1,0 +1,27 @@
+---
+title: "README"
+output: github_document
+---
+Data from "Title" by L.D. Maynard, author list... 
+Published in (Journal) on (date)
+Article DOI TBD
+
+All data were collected at La Selva Biological Station, Heredia Province, Costa Rica
+
+Maynard_etal_AlkenylphenolQuantChem.csv
+These data were collected during June–July 2017 and June–July 2018 from 21 individuals of 
+Piper sancti-felicis. 
+
+Maynard_etal_AlkenylphenolFungalBioassays.csv
+These data were collected from microdilution assays in September 2018
+
+Maynard_etal_PiperRemovalStudy.csv
+These data were collected from observing 10 individual plants of Piper sancti-felicis
+during May 26 to May 31 2009.
+
+Maynard_etal_AlkenylphenolAnimalTrials.csv
+These data were collecting January-March 2018. We conducted feeding trials in a 
+controlled flight cage setting with one representative species from each group of 
+dispersers: Seba’s Short-tailed Bat (Carollia perspicillata) and 
+Passerini’s Tanager (Ramphocelus passerinii. 
+
