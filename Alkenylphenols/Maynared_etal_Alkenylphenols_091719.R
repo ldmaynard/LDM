@@ -430,6 +430,18 @@ datf$nfungi[datf$fungi=="R26"]="Fusarium sp."
 ag.fun<-aggregate(abs_corr~Conc+nfungi+well, data=datf, FUN=mean) 
 mod.fun<-lm(abs_corr~Conc*nfungi, data=ag.fun)
 summary(mod.fun)
+
+mod.add<-lm(abs_corr~Conc+nfungi, data=ag.fun)
+mod.con<-lm(abs_corr~Conc, data=ag.fun)
+mod.fung<-lm(abs_corr~nfungi, data=ag.fun)
+mod.null<-lm(abs_corr~1, data=ag.fun)
+
+modcomp.fung<-aictab(cand.set=list(mod.fun,mod.add,mod.con,mod.fung,mod.null),
+				modnames=c("Interaction","Add","Concentration", "Fung. sp.", "Null"))#AIC table
+
+modcomp.fung #top model is interactive
+
+
 Anova(mod.fun)
 
 library(effects)
