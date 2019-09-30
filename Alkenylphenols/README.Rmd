@@ -12,6 +12,13 @@ Maynard_etal_AlkenylphenolQuantChem.csv
 These data were collected during June–July 2017 and June–July 2018 from 21 individuals of 
 Piper sancti-felicis. 
 
+no = individual identifier
+sample = sample number
+tissue = tissue type (L=leaf, P=pulp/flower, S=seed)
+plant = individual plant number (1-21)
+stage = stage of tissue (1=ripe pulp, 2=unripe pulp (stage 2), 3=unripe pulp (stage 3),
+4=flower (stage 4), 5=flower (stage 5), 6=developing flower, M=mature leaf)
+
 Maynard_etal_AlkenylphenolFungalBioassays.csv
 These data were collected from microdilution assays in September 2018
 
