@@ -56,7 +56,9 @@ I_pdw = porportion dry weight of compound I
 J_pdw = porportion dry weight of compound J
 
 ##Maynard_etal_AlkenylphenolFungalBioassays.csv
-These data were collected from microdilution assays in September 2018
+These data were collected from microdilution assays in September 2018 using extracts of
+alkeneylphenols from ripe fruits and three species of fungi harvested from the seeds of P. sancti-felicis.
+Experiment was performed in a 96-well plate.
 
 ID = individual identifier
 well = well of the 96-well plate
@@ -68,7 +70,7 @@ day 3 = average absorbance (OD) after 72 h
 abs_corr = average absorbance (OD) of day 3 - day 0
 
 ##Maynard_etal_PiperRemovalStudy.csv
-These data were collected from observing 10 individual plants of Piper sancti-felicis
+These data were collected from observing the removal of fruits from 10 individual plants of Piper sancti-felicis
 during May 26 to May 31 2009.
 
 event = individual identifier of the event
@@ -83,7 +85,10 @@ ripeness = ripeness of removed fruit (1=ripe, 2=unripe)
 These data were collecting January-March 2018. We conducted feeding trials in a 
 controlled flight cage setting with one representative species from each group of 
 dispersers: Seba’s Short-tailed Bat (Carollia perspicillata) and 
-Passerini’s Tanager (Ramphocelus passerinii).
+Passerini’s Tanager (Ramphocelus passerinii). Every day for four days,
+each individual was presented two dishes of 3g of “banana pudding.” One dish was
+supplemented with the extracted compounds (treatment) and the other was not
+(control).
 
 ID = individual identifier of the animal
 sex = sex of animal (M=male, F=female)
