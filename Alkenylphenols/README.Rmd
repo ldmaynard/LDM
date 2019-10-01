@@ -8,7 +8,7 @@ Article DOI TBD
 
 All data were collected at La Selva Biological Station, Heredia Province, Costa Rica
 
-Maynard_etal_AlkenylphenolQuantChem.csv
+Maynard_etal_AlkenylphenolQuantChem_edit.csv
 These data were collected during June–July 2017 and June–July 2018 from 21 individuals of 
 Piper sancti-felicis. 
 
@@ -17,14 +17,67 @@ sample = sample number
 tissue = tissue type (L=leaf, P=pulp/flower, S=seed)
 plant = individual plant number (1-21)
 stage = stage of tissue (1=ripe pulp, 2=unripe pulp (stage 2), 3=unripe pulp (stage 3), 4=flower (stage 4), 5=flower (stage 5), 6=developing flower, M=mature leaf)
-
+BR = peak area of IST (4-butylresorcinol)
+A = peak area of compound A
+B = peak area of compound B
+C = peak area of compound C
+D = peak area of compound D
+E = peak area of compound E
+F = peak area of compound F 
+G = peak area of compound G
+H = peak area of compound H 
+I = peak area of compound I 
+J = peak area of compound J
+pulp_wt_mg = weight of dry plant material (mg)
+pulp_wt_g = weight of dry plant material (g)
+insert_wt = weight of GC insert before adding alkenylphenol extract (g)
+insert_extract = weight of GC insert with the alkenylphenol extract (g)
+extract_wt_g = weight of alkenylphenol extracts (g)
+extract_wt_mg = weight of alkenylphenol extracts (mg)
+A_corr = peak area of compound A, corrected using the peak of area of IST
+B_corr = peak area of compound B, corrected using the peak of area of IST
+C_corr = peak area of compound C, corrected using the peak of area of IST
+D_corr = peak area of compound D, corrected using the peak of area of IST
+E_corr = peak area of compound E, corrected using the peak of area of IST
+F_corr = peak area of compound F, corrected using the peak of area of IST
+G_corr = peak area of compound G, corrected using the peak of area of IST
+H_corr = peak area of compound H, corrected using the peak of area of IST
+I_corr = peak area of compound I, corrected using the peak of area of IST
+J_corr = peak area of compound J, corrected using the peak of area of IST
+A_pdw = porportion dry weight of compound A
+B_pdw = porportion dry weight of compound B
+C_pdw = porportion dry weight of compound C
+D_pdw = porportion dry weight of compound D
+E_pdw = porportion dry weight of compound E
+F_pdw = porportion dry weight of compound F
+G_pdw = porportion dry weight of compound G
+H_pdw = porportion dry weight of compound H
+I_pdw = porportion dry weight of compound I
+J_pdw = porportion dry weight of compound J
 
 Maynard_etal_AlkenylphenolFungalBioassays.csv
 These data were collected from microdilution assays in September 2018
 
+ID = individual identifier
+well = well of the 96-well plate
+fungi = species of fungi (R3, R23, R26)
+Conc = concentration of alkenylphenols in the well (starting concentration = x and halved 8 times)
+day 0 = average absorbance (OD) after 0 h
+day 1 = average absorbance (OD) after 24 h
+day 3 = average absorbance (OD) after 72 h
+abs_corr = average absorbance (OD) of day 3 - day 0
+
 Maynard_etal_PiperRemovalStudy.csv
 These data were collected from observing 10 individual plants of Piper sancti-felicis
 during May 26 to May 31 2009.
+
+event = individual identifier of the event
+tree.no = individual identifier of the tree
+branch.no = individual identifier of the branch
+date = date of observation
+time.of.day = time of day of observation (1=night, 2=day)
+ripeness = ripeness of removed fruit (1=ripe, 2=unripe)
+
 
 Maynard_etal_AlkenylphenolAnimalTrials.csv
 These data were collecting January-March 2018. We conducted feeding trials in a 
