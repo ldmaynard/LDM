@@ -8,7 +8,7 @@ Article DOI TBD
 
 All data were collected at La Selva Biological Station, Heredia Province, Costa Rica
 
-Maynard_etal_AlkenylphenolQuantChem_edit.csv
+##Maynard_etal_AlkenylphenolQuantChem_edit.csv
 These data were collected during June–July 2017 and June–July 2018 from 21 individuals of 
 Piper sancti-felicis. 
 
@@ -55,7 +55,7 @@ H_pdw = porportion dry weight of compound H
 I_pdw = porportion dry weight of compound I
 J_pdw = porportion dry weight of compound J
 
-Maynard_etal_AlkenylphenolFungalBioassays.csv
+##Maynard_etal_AlkenylphenolFungalBioassays.csv
 These data were collected from microdilution assays in September 2018
 
 ID = individual identifier
@@ -67,7 +67,7 @@ day 1 = average absorbance (OD) after 24 h
 day 3 = average absorbance (OD) after 72 h
 abs_corr = average absorbance (OD) of day 3 - day 0
 
-Maynard_etal_PiperRemovalStudy.csv
+##Maynard_etal_PiperRemovalStudy.csv
 These data were collected from observing 10 individual plants of Piper sancti-felicis
 during May 26 to May 31 2009.
 
@@ -79,9 +79,34 @@ time.of.day = time of day of observation (1=night, 2=day)
 ripeness = ripeness of removed fruit (1=ripe, 2=unripe)
 
 
-Maynard_etal_AlkenylphenolAnimalTrials.csv
+##Maynard_etal_AlkenylphenolAnimalTrials.csv
 These data were collecting January-March 2018. We conducted feeding trials in a 
 controlled flight cage setting with one representative species from each group of 
 dispersers: Seba’s Short-tailed Bat (Carollia perspicillata) and 
-Passerini’s Tanager (Ramphocelus passerinii. 
+Passerini’s Tanager (Ramphocelus passerinii).
+
+ID = individual identifier of the animal
+sex = sex of animal (M=male, F=female)
+age = age of animal (J= juvenile, A=adult)
+rs = reproductive status (r=reproductive, nr=non-reproductive)
+season = cyclic season (D=dry, W=wet)
+concentration = concentation of alkenylphenols (% found in a ripe fruit, always 100)
+control.start.wt = starting weight of the control dish (g)
+treatment.start.wt = starting weight of the treatment dish (g)
+control.side = side control was placed in the cage (R=right, L=left)
+start.time = time the trial was started (hh:mm)
+end.time = time the trial was ended (hh:mm)
+time.to.beg.inspection = time it took the animal to inspect the food (hh:mm:ss, only available if camera was used during the trial)
+control.end.wt = end weight of the control dish (g)
+treatment.end.wt = end weight of the treatment dish (g)
+camera = individual identifier of camera, if one was used during the trial
+date = date of trial (mm/dd/yy)
+c.eaten = amount of control diet eaten by the animal (g)
+t.eaten = amount of treatment diet eaten by the animal (g)
+participate = if the animal chose a dish during the trial time (1=participated, 0=did not participate)
+dish.choice = from a visual inspection, which dish did the animal choose
+trial.no = individual identifier of the trial for the animal; how many trials had they participated in (1-4)
+round = individual identifier of the round of animals (1-4)
+animal = type of animal in the trial (Bird=R. passerinii, Bat=C. perspicillata)
+forearm.wing = measurment of the forearm (bat) or wing (bird) of the animal (mm)
 
