@@ -10,7 +10,15 @@ All data were collected at La Selva Biological Station, Heredia Province, Costa 
 
 ##Maynard_etal_AlkenylphenolQuantChem_edit.csv
 These data were collected during June–July 2017 and June–July 2018 from 21 individuals of 
-Piper sancti-felicis. 
+Piper sancti-felicis. Each branch was collected from the plant in the afternoon, usually between 
+1300h and 1600h, and included a ripe infructescence that had matured on that day. 
+Mature, fully expanded leaves from branches were also collected. Each sample was dried 
+in separate envelopes in the field with silica, transported to Virginia Tech, 
+and further lyophilized prior to alkenylphenol extractions. To separate pulp, seeds, and rachis 
+of the reproductive structures, the dried samples were processed through stainless steel mesh 
+sieves. Dried plant material was extracted twice in ethanol and evaporated to dryness, then
+a chloroform partition was performed. The chloroform layer was separated and evaporated to dryness.
+The final extract was resuspended in DCM and analyzed on a GCMS.
 
 no = individual identifier
 sample = sample number
