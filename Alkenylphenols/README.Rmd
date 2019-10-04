@@ -133,7 +133,7 @@ piper = individual identifier of the P. sancti-felicis plant
 arrival_time = time the individual bird arrived at the plant (hh:mm)
 depart_time = time the individual bird left the plant (hh:mm)
 time_at_piper = how long the individual spend on the plant (depart_time-arrival_time, hh:mm)
-sp = species  (BGTA	Blue-grey tanager	Thraupis episcopus,
+sp = species   (BGTA	Blue-grey tanager	Thraupis episcopus,
 		BRHE	Bronzy hermit	Glaucis aeneus,
 		BTSA	Buff-throated saltator	Saltator maximus,
 		CCTH	Clay-colored thrush	Turdus grayi,
