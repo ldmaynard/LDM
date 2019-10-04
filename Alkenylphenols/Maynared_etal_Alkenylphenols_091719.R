@@ -658,26 +658,21 @@ bp
 # Natural history information (Objective 4)####
 birb <- read.csv(file="Maynard_etal_Birds_Psf.csv",head=TRUE,fill=T)
 birb[is.na(birb)] <- 0
-birb$gleaning<-as.numeric(birb$gleaning)
-birb$frugivory<-as.numeric(birb$frugivory)
-birb$cover.perch<-as.numeric(birb$cover.perch)
-birb$defense<-as.numeric(birb$defense)
-birb$calling<-as.numeric(birb$calling)
-birb$socializing<-as.numeric(birb$socializing)
-birb$parental.care<-as.numeric(birb$parental.care)
+birb$gleaning<-as.numeric(as.character(birb$gleaning))
+birb$frugivory<-as.numeric(as.character(birb$frugivory))
+birb$cover.perch<-as.numeric(as.character(birb$cover.perch))
+birb$defense<-as.numeric(as.character(birb$defense))
+birb$calling<-as.numeric(as.character(birb$calling))
+birb$socializing<-as.numeric(as.character(birb$socializing))
+birb$parental.care<-as.numeric(as.character(birb$parental.care))
+
+#birb$sp<-as.factor(birb$sp)
 
 
 #summary table of bird activities
-library(plyr)
-
-
-birb$sp<-as.factor(birb$sp)
-
-
-
 birb.sum<-aggregate(sp~gleaning+frugivory+cover.perch+defense+
 						calling+socializing+parental.care, data=birb, FUN=sum) 
 
-head(birb.tab)
+head(birb.sum)
 
 #summary table of Passerini tanager activities 
