@@ -653,3 +653,31 @@ bp <- ggplot(tbl3, aes(x=Var2, y=Freq, fill=Var1))+
 	scale_fill_manual(values=c('#006837','#addd8e'))
 bp
 
+
+
+# Natural history information (Objective 4)####
+birb <- read.csv(file="Maynard_etal_Birds_Psf.csv",head=TRUE,fill=T)
+birb[is.na(birb)] <- 0
+birb$gleaning<-as.numeric(birb$gleaning)
+birb$frugivory<-as.numeric(birb$frugivory)
+birb$cover.perch<-as.numeric(birb$cover.perch)
+birb$defense<-as.numeric(birb$defense)
+birb$calling<-as.numeric(birb$calling)
+birb$socializing<-as.numeric(birb$socializing)
+birb$parental.care<-as.numeric(birb$parental.care)
+
+
+#summary table of bird activities
+library(plyr)
+
+
+birb$sp<-as.factor(birb$sp)
+
+
+
+birb.sum<-aggregate(sp~gleaning+frugivory+cover.perch+defense+
+						calling+socializing+parental.care, data=birb, FUN=sum) 
+
+head(birb.tab)
+
+#summary table of Passerini tanager activities 
