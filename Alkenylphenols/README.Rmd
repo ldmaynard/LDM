@@ -123,3 +123,27 @@ round = individual identifier of the round of animals (1-4)
 animal = type of animal in the trial (Bird=R. passerinii, Bat=C. perspicillata)
 forearm.wing = measurment of the forearm (bat) or wing (bird) of the animal (mm)
 
+
+##Maynard_etal_Birds_Psf.csv
+Data were collected July 5-10. Six individuals of P. sancti-felcis were observed in the
+morning (800-1100) and/or the afternoon (1300-1900) for visiting bird species.
+
+date = date of observation (mm/dd/yy)
+piper = individual identifier of the P. sancti-felicis plant
+arrival_time = time the individual bird arrived at the plant (hh:mm)
+depart_time = time the individual bird left the plant (hh:mm)
+time_at_piper = how long the individual spend on the plant (depart_time-arrival_time, hh:mm)
+sp = bird species (BGTA	Blue-grey tanager	Thraupis episcopus,
+	BRHE	Bronzy hermit	Glaucis aeneus,
+	BTSA	Buff-throated saltator	Saltator maximus,
+	CCTH	Clay-colored thrush	Turdus grayi,
+	GHTA	Golden-hooded tanager	Tangara larvata,
+	GRKI	Great kiskadee	Pitangus sulphuratus,
+	OBEU	Olive-backed euphonia	Euphonia gouldi,
+	PALT	Palm tanager	Thraupis palmarum,
+	PAST	Passerini tanager	Ramphocelus passerinii,
+	PCTA	Plain-colored tanager	Tangara inornata,
+	RTAT	Red-throated ant tanager	Habia fuscicauda,
+	RTHU	Rufous-tailed hummingbird	Amazilia tzacatl,
+	VASE	Variable seedeater	Sporophila corvina,
+	WCMA	White-collared manakin	Manacus candei)
