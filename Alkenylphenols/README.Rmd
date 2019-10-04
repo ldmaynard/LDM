@@ -133,17 +133,29 @@ piper = individual identifier of the P. sancti-felicis plant
 arrival_time = time the individual bird arrived at the plant (hh:mm)
 depart_time = time the individual bird left the plant (hh:mm)
 time_at_piper = how long the individual spend on the plant (depart_time-arrival_time, hh:mm)
-sp = bird species (BGTA	Blue-grey tanager	Thraupis episcopus,
-	BRHE	Bronzy hermit	Glaucis aeneus,
-	BTSA	Buff-throated saltator	Saltator maximus,
-	CCTH	Clay-colored thrush	Turdus grayi,
-	GHTA	Golden-hooded tanager	Tangara larvata,
-	GRKI	Great kiskadee	Pitangus sulphuratus,
-	OBEU	Olive-backed euphonia	Euphonia gouldi,
-	PALT	Palm tanager	Thraupis palmarum,
-	PAST	Passerini tanager	Ramphocelus passerinii,
-	PCTA	Plain-colored tanager	Tangara inornata,
-	RTAT	Red-throated ant tanager	Habia fuscicauda,
-	RTHU	Rufous-tailed hummingbird	Amazilia tzacatl,
-	VASE	Variable seedeater	Sporophila corvina,
-	WCMA	White-collared manakin	Manacus candei)
+sp = bird species  (BGTA	Blue-grey tanager	Thraupis episcopus,
+					BRHE	Bronzy hermit	Glaucis aeneus,
+					BTSA	Buff-throated saltator	Saltator maximus,
+					CCTH	Clay-colored thrush	Turdus grayi,
+					GHTA	Golden-hooded tanager	Tangara larvata,
+					GRKI	Great kiskadee	Pitangus sulphuratus,
+					OBEU	Olive-backed euphonia	Euphonia gouldi,
+					PALT	Palm tanager	Thraupis palmarum,
+					PAST	Passerini tanager	Ramphocelus passerinii,
+					PCTA	Plain-colored tanager	Tangara inornata,
+					RTAT	Red-throated ant tanager	Habia fuscicauda,
+					RTHU	Rufous-tailed hummingbird	Amazilia tzacatl,
+					VASE	Variable seedeater	Sporophila corvina,
+					WCMA	White-collared manakin	Manacus candei)
+sex = sex of bird (M=male, F=female)
+gleaning = the individual used the plant to glean insects (0=no, 1=yes)
+cover/perch = the individual used the plant to perch or as cover 
+frugivory = the individual used the plant to eat the infructescences
+defense = the individual was defended the plant from other bird species 
+parental care = the individual used the plant to care for its young
+socializing = the individual used the plant to socialize with other birds
+calling = the individual used the plant to call/sing
+activity 1 = the first behavior the bird exhibited (C=calling,G=gleaning, F=frugivory,X=cover/perch, S=socializing, P=parental care, D=defending)
+activity 2 = the second behavior the bird exhibited (C=calling,G=gleaning, F=frugivory,X=cover/perch, S=socializing, P=parental care, D=defending)
+activity 3 = the third behavior the bird exhibited (C=calling,G=gleaning, F=frugivory,X=cover/perch, S=socializing, P=parental care, D=defending)
+notes = notes about the observation
