@@ -142,8 +142,8 @@ CLD(d10$emmeans,  Letters ='ABCDEFGHIJKLMNOPQRS')
 
 
 ##plot
-a10$tissue[a10$tissue=="Unripe pulp (2)"]="Unripe pulp"
-a10$tissue[a10$tissue=="Flowers (4)"]="Flowers"
+a10$tissue[a10$tissue=="Unripe pulp (2)"]="Late unripe pulp"
+a10$tissue[a10$tissue=="Flowers (4)"]="Late flowers"
 a10$tissue[a10$tissue=="Ripe pulp (1)"]="Ripe pulp"
 
 
@@ -151,7 +151,7 @@ tissueplot_bwj<-ggplot(a10, aes(x=tissue, y=props)) +
 	geom_boxplot(outlier.shape = NA) + geom_jitter(position=position_jitter(width = 0.04), alpha=0.4)+
 	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
 	theme_classic()+
-	scale_x_discrete(limits=c("Mature leaves","Flowers", "Unripe pulp","Ripe pulp",
+	scale_x_discrete(limits=c("Mature leaves","Late flowers", "Late unripe pulp","Ripe pulp",
 							  "Seeds"))+
 	stat_summary(geom = 'text', label = c("B","A","C","A","C"),
 				 fun.y = max, vjust = -0.8)+
