@@ -666,13 +666,25 @@ birb$calling<-as.numeric(as.character(birb$calling))
 birb$socializing<-as.numeric(as.character(birb$socializing))
 birb$parental.care<-as.numeric(as.character(birb$parental.care))
 
-#birb$sp<-as.factor(birb$sp)
+birb$sp<-as.factor(birb$sp)
 
 
 #summary table of bird activities
+#Warning, sum not meaningful for factors. Not sure why it isn't recognizing the commands above...
 birb.sum<-aggregate(sp~gleaning+frugivory+cover.perch+defense+
 						calling+socializing+parental.care, data=birb, FUN=sum) 
 
 head(birb.sum)
 
+#this isn't summarizing by bird species...
+library(dplyr)
+bir <- birb %>%
+	group_by(sp) %>%
+	summarise(gleaning=sum(gleaning), frugivory=sum(frugivory))
+bir
+
 #summary table of Passerini tanager activities 
+birb <- birb[order(birb$sp),]
+PAST<-slice(birb, 22:41)
+past.sum<-aggregate(date~gleaning+frugivory+cover.perch+defense+
+						calling+socializing+parental.care, data=PAST, FUN=mean) 
