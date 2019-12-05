@@ -481,6 +481,8 @@ predplot3<-ggplot(R3)+
 	geom_point(aes(x=Conc, y=abs_corr))
 predplot3
 
+fun.calc<- read.csv(file="fun_calc.csv",head=TRUE,fill=T)
+
 ##DATA PLOT
 ###load italics for legend
 leg_fung <- c(expression(paste(italic("Fusarium "), "sp.")),
