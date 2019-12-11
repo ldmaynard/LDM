@@ -460,8 +460,8 @@ mod26<-lm(data = R26, abs_corr~Conc)
 mod3<-lm(data = R3, abs_corr~Conc)
 
 summary(mod23)#t=-7.03,p=0.0002,r2=0.88
-summary(mod26)#t=-1.0, p=0.351, r2=0.12
-summary(mod3)#t=-5.213, p=0.00124, r2=0.80
+summary(mod26)#t=-1.0, p=0.351, r2=0.13
+summary(mod3)#t=-5.213, p=0.00124, r2=0.83
 
 R23$yhat<-predict(mod23)
 predplot23<-ggplot(R23)+
@@ -481,28 +481,15 @@ predplot3<-ggplot(R3)+
 	geom_point(aes(x=Conc, y=abs_corr))
 predplot3
 
-fun.calc<- read.csv(file="fun_calc.csv",head=TRUE,fill=T)
+##back-calculating alkenylphenol concentrations in wells
+#ripe fruit mean x 5g starting plant material
+0.027073768*5
 
-form<-lm(fun.calc$ist.peak.area~fun.calc$ist.concen)
-summary(form)
-form
-plot(fun.calc$ist.peak.area~fun.calc$ist.concen)
-ggplot(fun.calc, aes(x=ist.concen, y=ist.peak.area))+
-	geom_smooth(method="lm")+
-	geom_point()
+#0.1353688g resuspended in 2mL
+0.1353688/2
 
-#R2=0.97
-
-#y=mx+b, y=1038438x-369521
-
-#calc unknown concen of each comp
-fun.calc$comp.conc<-((fun.calc$peak.area-369521)/1038438)
-#calc pdw for each comp
-fun.calc$per.dw<-(((fun.calc$comp.conc*10)*50)/50000)
-#sum pdw for all compounds
-sum(fun.calc$per.dw) #0.2003474--is this % or prop. dw?
-
-0.2003474*0.3125
+#Heather's dilutions
+0.0676844/8
 
 ##DATA PLOT
 ###load italics for legend
@@ -516,15 +503,15 @@ plota<-ggplot(ag.fun, aes(x=Conc, y=abs_corr, group=nfungi))+
 	geom_point(aes(color=nfungi))+
 	theme_classic()+
 	scale_color_viridis(discrete = T, option = "D", labels=leg_fung)+
-	labs(x="Alkenylphenol concentration (mg/mL)", y="Average absorbance (OD)", color=" ")+
+	labs(x="Total alkenylphenols (prop. dw)", y="Average absorbance (OD)", color=" ")+
 	theme(legend.text.align = 0, text = element_text(size=18),legend.position="top")+ 
-	annotate("text", x = 28, y = 0.66,
+	annotate("text", x = 0.0075, y = 0.67,
 			 label = "paste(italic(R) ^ 2, \" = 0.88\")", parse = TRUE, size =5)+ 
-	annotate("text", x = 28, y = 0.55,
-			 label = "paste(italic(R) ^ 2, \" = 0.12\")", parse = TRUE, size =5)+ 
-	annotate("text", x = 28, y = 0.415,
-			 label = "paste(italic(R) ^ 2, \" = 0.80\")", parse = TRUE, size =5)+
-  scale_x_continuous(expand = c(0, 0), limits = c(0.0,32.0))
+	annotate("text", x = 0.0075, y = 0.47,
+			 label = "paste(italic(R) ^ 2, \" = 0.13\")", parse = TRUE, size =5)+ 
+	annotate("text", x = 0.0075, y = 0.3,
+			 label = "paste(italic(R) ^ 2, \" = 0.83\")", parse = TRUE, size =5)+
+  scale_x_continuous(expand = c(0, 0), limits = c(0.0,0.0085))
 plota
 
 #EXPORT PLOT
