@@ -483,6 +483,27 @@ predplot3
 
 fun.calc<- read.csv(file="fun_calc.csv",head=TRUE,fill=T)
 
+form<-lm(fun.calc$ist.peak.area~fun.calc$ist.concen)
+summary(form)
+form
+plot(fun.calc$ist.peak.area~fun.calc$ist.concen)
+ggplot(fun.calc, aes(x=ist.concen, y=ist.peak.area))+
+	geom_smooth(method="lm")+
+	geom_point()
+
+#R2=0.97
+
+#y=mx+b, y=1038438x-369521
+
+#calc unknown concen of each comp
+fun.calc$comp.conc<-((fun.calc$peak.area-369521)/1038438)
+#calc pdw for each comp
+fun.calc$per.dw<-(((fun.calc$comp.conc*10)*50)/50000)
+#sum pdw for all compounds
+sum(fun.calc$per.dw) #0.2003474--is this % or prop. dw?
+
+0.2003474*0.3125
+
 ##DATA PLOT
 ###load italics for legend
 leg_fung <- c(expression(paste(italic("Fusarium "), "sp.")),
