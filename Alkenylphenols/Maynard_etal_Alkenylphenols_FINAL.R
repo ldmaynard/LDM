@@ -418,7 +418,7 @@ sum.plot1
 # Objective 3: Fungal bioassays --------------------------------------------------------
 
 datf<- read.csv(file="Maynard_etal_FungalBioassays.csv",head=TRUE,fill=T)
-datf <- datf[1:81,]
+datf <- datf[1:81,] 
 
 datf$Conc<-as.numeric(datf$Conc)
 datf$fungi<-as.character(datf$fungi)
