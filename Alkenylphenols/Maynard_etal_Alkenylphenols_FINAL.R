@@ -463,6 +463,14 @@ summary(mod23)#t=-7.03,p=0.0002,r2=0.88
 summary(mod26)#t=-1.0, p=0.351, r2=0.13
 summary(mod3)#t=-5.213, p=0.00124, r2=0.83
 
+mod23#m= -46.894
+-46.894*0.1
+#4.7 dec every .1%dw
+
+mod3 #m= -53.8707
+-53.8707*0.1
+#5.4 decrease every .1%dw
+
 R23$yhat<-predict(mod23)
 predplot23<-ggplot(R23)+
 	geom_smooth(aes(x=Conc, y=yhat), color="red")+
