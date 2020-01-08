@@ -27,7 +27,7 @@ library(pals)
 
 # Objective 2: Quantitative chemistry -------------------------------------
 
-df_all <- read.csv(file="Maynard_etal_AlkenylphenolQuantChem_edit.csv",head=TRUE)
+df_all <- read.csv(file="Maynard_etal_AlkenylphenolQuantChem.csv",head=TRUE)
 #removing columns unnec. for analysis
 df_all <- subset(df_all, select = -c(1, 6:32))
 df_all[df_all == "#VALUE!"] <- NA
