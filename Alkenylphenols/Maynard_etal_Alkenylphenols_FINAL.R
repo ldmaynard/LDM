@@ -250,6 +250,22 @@ stage_line_plot2
 #stage_line_plot2
 #dev.off()
 
+stage_line_plot3<-ggplot(ag_dat)+
+	geom_line(aes(x=stage.num,y=props,color=plant),alpha=0.5,size=1,show.legend = F)+
+	labs(x=" ", y="Total alkenylphenols (prop. dw)")+
+	theme_classic()+
+	scale_color_viridis(discrete = T, option = "D")+
+	scale_x_reverse(breaks=c(6,5,4,3,2,1), expand=c(0,0))+
+	theme(text = element_text(size = 15))+
+	scale_y_continuous(expand=c(0.0,0.0))+
+	coord_cartesian(xlim=c(1.0,6.0), ylim=c(0.0,.1))
+stage_line_plot3
+
+##EXPORT PLOT
+tiff('stage_line_plot3.tiff', units="in", width=8, height=5, res=500)
+stage_line_plot3
+dev.off()
+
 #SUMMARY STATS
 library(plyr)
 dev.tab <- ddply(ag_dat, c("stage.num"), summarise,
@@ -603,7 +619,7 @@ birdpref<-ggplot(bird_ag,aes(x=treatment,y=amount_eaten))+geom_boxplot()+
 	geom_jitter(position=position_jitter(width = 0.03), alpha=0.5,size=1.7)+
 	theme_classic()+
 	labs(x=" ",y="")+
-	scale_y_continuous(limits =  c(0,3.00))+
+	scale_y_continuous(limits =  c(0,3))+
 	theme(text = element_text(size = 18))
 birdpref
 
@@ -666,9 +682,12 @@ tbl3
 bp <- ggplot(tbl3, aes(x=Var2, y=Freq, fill=Var1))+
 	geom_bar(aes(fill=Var1),stat = "identity", position = "stack")+
 	theme_classic()+
-	labs(x="", y="No. of fruits removed",fill="")+
+	labs(x="", y="No. fruits removed",fill="")+
 	theme(text = element_text(size = 18))+
-	scale_fill_manual(values=c('#006837','#addd8e'))
+	scale_fill_manual(values=c('#006837','#9EBE7D'))+
+	coord_flip()+
+	theme(legend.position="top")
+	
 bp
 
 
